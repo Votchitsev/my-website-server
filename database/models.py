@@ -9,17 +9,10 @@ class Language(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
 
-    about_me_text = relationship('about_me')
-    contact_text = relationship('contact')
-    education_company_text = ('education_company')
-    skills_text = ('skills')
-
-
-    # @validates('name')
-    # def validate_name(self, _, name):
-    #     if name != 'ru' or name != 'en':
-    #         raise ValueError('Unexpected language name. Please, choose one of "en" or "ru"')
-    #     return name
+    about_me_text = relationship('AboutMe')
+    contact_text = relationship('Contact')
+    education_company_text = ('EducationCompany')
+    skills_text = ('Skill')
 
 
 class AboutMe(Base):
@@ -55,16 +48,16 @@ class EducationCompany(Base):
     logo = Column(String)
     language_id = Column(Integer, ForeignKey('language.id'))
 
-    skills = relationship('skills')
+    skills = relationship('Skill')
 
 
-class Skills(Base):
-    __tablename__ = 'skills'
+class Skill(Base):
+    __tablename__ = 'skill'
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    education_company_id = (Integer, ForeignKey('education_company.id'))
-    language = (Integer, ForeignKey('language.id'))
+    education_company_id = Column(Integer, ForeignKey('education_company.id'))
+    language = Column(Integer, ForeignKey('language.id'))
 
 
 class Feedback(Base):
