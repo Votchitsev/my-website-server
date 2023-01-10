@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Text
-from sqlalchemy.orm import relationship, validates
+from sqlalchemy.orm import relationship
 
 from .database import Base
 
@@ -20,7 +20,7 @@ class AboutMe(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     text = Column(String)
-    language_id = Column(String, ForeignKey('language.id'))
+    language_id = Column(Integer, ForeignKey('language.id'))
     is_active = Column(Boolean, default=True)
 
 
