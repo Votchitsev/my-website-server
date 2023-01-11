@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-import time
+import json
 
 from database.models import AboutMe, Language
 from database.database import SessionLocal
@@ -8,6 +8,11 @@ from main import app
 
 client = TestClient(app)
 session = SessionLocal()
+
+def clear_db():
+    session.query(AboutMe).delete()
+    session.commit()
+
 
 def test_create_ru_text():
     response = client.post(
@@ -104,6 +109,32 @@ def test_create_additional_text_negative():
     
     assert len(all_texts) == 2
     assert en_text.text == 'Test text 2'
-    
-    session.query(AboutMe).delete()
-    session.commit()
+
+
+def test_get_text():
+    client.post(
+        'about_me/',
+        json = {
+            "text": "Тестовый текст",
+            "language": "ru",
+            "is_active": "true"
+        }
+    )
+
+    response = client.get(
+        'about_me/?lang=ru'
+    )
+
+    assert response.status_code == 200
+    assert json.loads(response._content)['text'] == 'Тестовый текст'
+
+    clear_db()
+
+
+def test_get_from_empty_table():
+    response = client.get(
+        'about_me/?lang=ru'
+    )
+
+    assert response.status_code == 404
+    assert json.loads(response._content)['detail'] == 'Text not found'
