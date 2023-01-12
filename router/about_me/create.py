@@ -1,15 +1,7 @@
 from sqlalchemy.orm import Session
 
 from database.models import AboutMe
-
-
-def about_me_is_created(db: Session, language_id):
-    result = db.query(AboutMe).filter(AboutMe.language_id == language_id).all()
-
-    if len(result) > 0:
-        return True
-    
-    return False
+from router.row_is_created import row_is_created
 
 
 def create(db: Session, data):
@@ -22,7 +14,7 @@ def create(db: Session, data):
         language_id = 2
 
 
-    if about_me_is_created(db, language_id):
+    if row_is_created(db, language_id, AboutMe):
         db.query(AboutMe).filter(AboutMe.language_id == language_id).\
             update({
               "text": data.text,
