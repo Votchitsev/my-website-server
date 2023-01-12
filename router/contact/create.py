@@ -17,7 +17,7 @@ def create(db: Session, data):
               "email": data.email,
               "phone": data.phone,
               "current_job": data.current_job,
-              "is_active": data.is_active,  
+              "is_active": data.is_active,
             })
         db.commit()
         return
