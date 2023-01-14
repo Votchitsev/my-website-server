@@ -13,7 +13,7 @@ def create(db: Session, data):
         db.query(Contact).filter(Contact.language_id == language_id).\
             update({
               "name": data.name,
-              "burth_date": data.burth_date,
+              "burth_date": datetime.strptime(data.burth_date, '%Y-%m-%d'),
               "city": data.city,
               "email": data.email,
               "phone": data.phone,
