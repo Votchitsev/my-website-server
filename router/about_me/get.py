@@ -1,14 +1,13 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from database.models import AboutMe
-from database.models import Language
+from database.models import AboutMe, Language
 
 
 def get(db: Session, lang):
     query_response = db.query(AboutMe).join(Language).filter(Language.name == lang).first()
 
-    if (query_response):
+    if query_response:
         return {
         "text": query_response.text,
     }
