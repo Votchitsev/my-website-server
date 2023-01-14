@@ -112,15 +112,6 @@ def test_create_additional_text_negative():
 
 
 def test_get_text():
-    client.post(
-        'about_me/',
-        json = {
-            "text": "Тестовый текст",
-            "language": "ru",
-            "is_active": "true"
-        }
-    )
-
     response = client.get(
         'about_me/?lang=ru'
     )

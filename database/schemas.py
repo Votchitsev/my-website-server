@@ -1,10 +1,8 @@
 from pydantic import BaseModel, validator
 
-    
-class AboutMe(BaseModel):
-    text: str
+
+class TableWithLanguage(BaseModel):
     language: str
-    is_active: bool
 
     @validator('language')
     def validate_language(cls, value):
@@ -13,13 +11,16 @@ class AboutMe(BaseModel):
         return value
 
 
-class Contact(BaseModel):
+class AboutMe(TableWithLanguage):
+    text: str
+    is_active: bool
+
+
+class Contact(TableWithLanguage):
     name: str
     burth_date: str
     city: str
     email: str
     phone: str
     current_job: str
-    language: str
     is_active: bool
-    
