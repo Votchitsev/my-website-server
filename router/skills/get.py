@@ -10,7 +10,7 @@ def get(db: Session, lang: str, edu_id: int):
 
     if len(query_response):
         return {
-            "name": query_response.name,
+            "skills": query_response
         }
 
     raise HTTPException(status_code=404, detail="Skill not found")

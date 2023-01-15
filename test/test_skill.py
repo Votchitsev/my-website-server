@@ -28,6 +28,18 @@ def test_create_skill():
     assert len(query_response.all()) == 1
     assert query_response.first().name == 'Тестовый навык'
 
+
+def test_get_skill():
+    education_company = session.query(EducationCompany).join(Language).filter(Language.name == 'ru').first()
+
+    response = client.get(f'/skill/?lang=ru&edu_id={education_company.id}')
+
+    assert json.loads(response._content)["skills"] == [{
+            "name": "Тестовый навык",
+            "education_company_id": 1,
+            "language_id": 1,
+            "id": 1
+        }]
+        
     clear_db(Skill)
     clear_db(EducationCompany)
-    

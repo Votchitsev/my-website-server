@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from database.models import EducationCompany, Language
 
 
-def get(db: Session, lang):
+def get(db: Session, lang: str):
     query_response = db.query(EducationCompany).join(Language).filter(Language.name == lang).first()
 
     if query_response:
