@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator, EmailStr
 
 
 class TableWithLanguage(BaseModel):
@@ -36,3 +36,11 @@ class EducationCompany(TableWithLanguage):
     start_education_date: str
     finish_education_date: str
     logo: str
+
+
+class Feedback(BaseModel):
+    date: str
+    name: str
+    email: EmailStr
+    message: str
+    
