@@ -11,6 +11,13 @@ class TableWithLanguage(BaseModel):
         return value
 
 
+class Feedback(BaseModel):
+    date: str
+    name: str
+    email: EmailStr
+    message: str
+
+
 class AboutMe(TableWithLanguage):
     text: str
     is_active: bool
@@ -37,10 +44,4 @@ class EducationCompany(TableWithLanguage):
     finish_education_date: str
     logo: str
 
-
-class Feedback(BaseModel):
-    date: str
-    name: str
-    email: EmailStr
-    message: str
     

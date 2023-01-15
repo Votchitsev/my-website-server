@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from datetime import datetime
 
-from database.models import EducationCompany, Skill
+from database.models import Skill
 from router.get_language_id import get_language_id
 
 
