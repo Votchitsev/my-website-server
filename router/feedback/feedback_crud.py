@@ -4,6 +4,7 @@ from database.database import SessionLocal
 from database.schemas import Feedback
 from router.feedback.create import create
 from router.feedback.get import get
+from router.feedback.delete import delete
 
 
 router = APIRouter(
@@ -22,5 +23,6 @@ def get_feedbaack():
 
 
 @router.delete('/')
-def delete_feedback(id):
-    pass
+def delete_feedback(id: int):
+    delete(SessionLocal(), id)
+    

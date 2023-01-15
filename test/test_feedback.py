@@ -28,4 +28,10 @@ def test_get_feedback():
     assert response.status_code == 200
     assert json.loads(response._content)['feedback'][0]['name'] == 'Test name'
 
-    clear_db(Feedback)
+
+def test_delete_feedback():
+    client.delete('feedback/?id=1')
+
+    query_response = session.query(Feedback).all()
+
+    assert len(query_response) == 0

@@ -12,5 +12,6 @@ def get(db: Session):
             "feedback": query_response
         }
 
+    db.close()
     raise HTTPException(status_code=404, detail="Feedback not found")
     

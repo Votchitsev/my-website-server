@@ -17,3 +17,5 @@ def create(db: Session, data):
     db.add(skill)
 
     db.commit()
+    db.close()
+    

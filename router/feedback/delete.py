@@ -10,7 +10,9 @@ def delete(db: Session, id):
     if feedback:
         feedback.delete()
         db.commit()
+        db.close()
         return
-
+        
+    db.close()
     raise HTTPException(status_code=404, detail="feedback not found")
     

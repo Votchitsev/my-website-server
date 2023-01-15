@@ -21,6 +21,7 @@ def create(db: Session, data):
               "is_active": data.is_active,
             })
         db.commit()
+        db.close()
         return
     
     contact = Contact(
@@ -37,4 +38,6 @@ def create(db: Session, data):
     db.add(contact)
 
     db.commit()
+
+    db.close()
     

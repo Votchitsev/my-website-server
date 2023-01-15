@@ -6,7 +6,8 @@ from database.models import Contact, Language
 
 def get(db: Session, lang):
     query_response = db.query(Contact).join(Language).filter(Language.name == lang).first()
-
+    db.close()
+    
     if query_response:
         return {
             "name": query_response.name,

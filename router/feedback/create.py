@@ -15,4 +15,4 @@ def create(db: Session, data):
     db.add(feedback)
 
     db.commit()
-    
+    db.close()

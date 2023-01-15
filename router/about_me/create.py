@@ -15,6 +15,7 @@ def create(db: Session, data):
               "is_active": data.is_active  
             })
         db.commit()
+        db.close()
         return
 
     about_me = AboutMe(
@@ -26,3 +27,5 @@ def create(db: Session, data):
     db.add(about_me)
 
     db.commit()
+
+    db.close()

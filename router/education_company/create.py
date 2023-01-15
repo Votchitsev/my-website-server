@@ -17,6 +17,7 @@ def create(db: Session, data):
             "logo": data.logo,
         })
         db.commit()
+        db.close()
         return
     
     education_company = EducationCompany(
@@ -30,3 +31,4 @@ def create(db: Session, data):
     db.add(education_company)
 
     db.commit()
+    db.close()
