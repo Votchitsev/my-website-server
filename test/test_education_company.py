@@ -99,6 +99,13 @@ def test_get_edu():
     clear_db(EducationCompany)
 
 
+def test_delete_edu():
+    client.delete('/?id=1')
+
+    query_response = session.query(EducationCompany).filter(EducationCompany.id == 1).all()
+    assert len(query_response) == 0
+
+
 def test_get_from_empty_table():
     response = client.get(
         'edu/?lang=ru'

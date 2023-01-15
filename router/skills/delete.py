@@ -16,3 +16,4 @@ def delete(db: Session, id):
     
     db.close()
     raise HTTPException(status_code=404, detail="Skill not found")
+    
