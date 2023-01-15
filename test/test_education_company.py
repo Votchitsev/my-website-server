@@ -1,3 +1,5 @@
+import json
+
 from test.common import client, clear_db, session
 from database.models import EducationCompany, Language
 
@@ -85,3 +87,24 @@ def test_create_additional_edu_negative():
 
     assert len(all_edu) == 2
     assert ru_edu.name == 'Тестовое Имя 2'
+
+
+def test_get_edu():
+    response = client.get(
+        'edu/?lang=ru'
+    )
+
+    assert response.status_code == 200
+    assert json.loads(response._content)['name'] == 'Тестовое Имя 2'
+    
+    clear_db(EducationCompany)
+
+
+def test_get_from_empty_table():
+    response = client.get(
+        'edu/lang=ru'
+    )
+
+    assert response.status_code == 404
+    assert json.loads(response._content)['detail'] == 'Education conpany not found'
+    
