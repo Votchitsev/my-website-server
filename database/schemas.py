@@ -24,3 +24,15 @@ class Contact(TableWithLanguage):
     phone: str
     current_job: str
     is_active: bool
+
+
+class Skill(TableWithLanguage):
+    name: str
+    education_company_id: int
+
+
+class EducationCompany(TableWithLanguage):
+    name: str
+    start_education_date: str
+    finish_education_date: str
+    logo: str

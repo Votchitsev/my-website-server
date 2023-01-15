@@ -7,7 +7,7 @@ from database.schemas import Contact
 
 
 router = APIRouter(
-  prefix = '/contact'
+    prefix = '/contact'
 )
 
 
