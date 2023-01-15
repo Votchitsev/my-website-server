@@ -57,7 +57,7 @@ class Skill(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     education_company_id = Column(Integer, ForeignKey('education_company.id'))
-    language = Column(Integer, ForeignKey('language.id'))
+    language_id = Column(Integer, ForeignKey('language.id'))
 
 
 class Feedback(Base):
@@ -68,3 +68,4 @@ class Feedback(Base):
     name = Column(String)
     email = Column(String)
     message = Column(Text)
+    

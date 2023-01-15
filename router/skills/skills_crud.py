@@ -1,14 +1,15 @@
 from fastapi import APIRouter
 
 from database.database import SessionLocal
-from database.schemas import Skill, EducationCompany
+from database.schemas import Skill
+from router.skills.create import create
 
 
 router = APIRouter(
-    prefix = '/skills'
+    prefix = '/skill'
 )
 
 
 @router.post('/')
 def create_skill(data: Skill):
-    pass
+    create(SessionLocal(), data)

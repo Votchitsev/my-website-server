@@ -4,7 +4,6 @@ from test.common import client, clear_db, session
 from database.models import EducationCompany, Language
 
 
-
 def test_create_ru_edu():
     response = client.post('edu/', json = {
         "name": "Тестовое Имя",
