@@ -4,6 +4,7 @@ from database.database import SessionLocal
 from database.schemas import Skill
 from router.skills.create import create
 from router.skills.get import get
+from router.skills.delete import delete
 
 
 router = APIRouter(
@@ -19,4 +20,8 @@ def create_skill(data: Skill):
 @router.get('/')
 def get_skill(lang: str, edu_id: int):
     return get(SessionLocal(), lang, edu_id)
-    
+
+
+@router.delete('/')
+def delete_skill(id: int):
+    delete(SessionLocal(), id)

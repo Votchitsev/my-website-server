@@ -7,7 +7,7 @@ from database.models import Feedback
 def delete(db: Session, id):
     feedback = db.query(Feedback).filter(Feedback.id == id)
 
-    if feedback:
+    if feedback.first():
         feedback.delete()
         db.commit()
         db.close()

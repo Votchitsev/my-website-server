@@ -42,5 +42,10 @@ def test_get_skill():
             "id": 1
         }]
         
-    clear_db(Skill)
-    clear_db(EducationCompany)
+
+def test_delete_skill():
+    client.delete('skill/?id=1')
+
+    query_response = session.query(Skill).filter(Skill.id == 1).all()
+
+    assert len(query_response) == 0
