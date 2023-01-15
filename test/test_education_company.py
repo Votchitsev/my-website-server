@@ -102,9 +102,10 @@ def test_get_edu():
 
 def test_get_from_empty_table():
     response = client.get(
-        'edu/lang=ru'
+        'edu/?lang=ru'
     )
 
     assert response.status_code == 404
-    assert json.loads(response._content)['detail'] == 'Education conpany not found'
-    
+    assert json.loads(response._content)['detail'] == 'Education company not found'
+
+    clear_db(EducationCompany)

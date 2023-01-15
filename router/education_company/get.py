@@ -15,5 +15,5 @@ def get(db: Session, lang):
             "logo": query_response.logo,
         }
     
-    raise HTTPException(status_code=404, detail="Education conpany not found")
+    raise HTTPException(status_code=404, detail="Education company not found")
     

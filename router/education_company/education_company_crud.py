@@ -17,5 +17,5 @@ def create_edu(data: EducationCompany):
 
 
 @router.get('/')
-def get_edu(data: EducationCompany, lang: str):
-    get(SessionLocal(), lang)
+def get_edu(lang: str):
+    return get(SessionLocal(), lang)
