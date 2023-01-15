@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from database.database import SessionLocal
 from database.schemas import Feedback
 from router.feedback.create import create
+from router.feedback.get import get
 
 
 router = APIRouter(
@@ -17,7 +18,7 @@ def create_feedback(data: Feedback):
 
 @router.get('/')
 def get_feedbaack():
-    pass
+    return get(SessionLocal())
 
 
 @router.delete('/')

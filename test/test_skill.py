@@ -34,6 +34,7 @@ def test_get_skill():
 
     response = client.get(f'/skill/?lang=ru&edu_id={education_company.id}')
 
+    assert response.status_code == 200
     assert json.loads(response._content)["skills"] == [{
             "name": "Тестовый навык",
             "education_company_id": 1,
